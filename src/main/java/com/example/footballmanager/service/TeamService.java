@@ -17,7 +17,7 @@ public class TeamService {
 
 
     public TeamEntity registration(TeamEntity team) throws TeamAlreadyExistException {
-        if(teamRepo.findByname(team.getName()) != null) {
+        if(teamRepo.findByName(team.getName()) != null) {
             throw new TeamAlreadyExistException("Команда з такою назвою уже існує");
         }
         return teamRepo.save(team);

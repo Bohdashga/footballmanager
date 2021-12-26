@@ -12,11 +12,20 @@ public class TeamEntity {
     private String name;
     private String city;
     private String country;
+    private float balance;
+    private float commission;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "team")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "team")
     private List<PlayerEntity> players;
-    
-    
+
+    public List<PlayerEntity> getPlayers() {
+        return players;
+    }
+
+    public void setPlayer(PlayerEntity player){
+        players.add(player);
+    }
+
     public TeamEntity() {
     }
 

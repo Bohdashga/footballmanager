@@ -13,13 +13,48 @@ public class PlayerEntity {
     private Long id;
     private String firstname;
     private String surname;
-
-    //private Long team_id;
-
+    private int age;
+    private int experience;
+    private float price;
+    private Boolean isSell;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
     private TeamEntity team;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Boolean getSell() {
+        return isSell;
+    }
+
+    public void setSell(Boolean sell) {
+        isSell = sell;
+    }
+
+
 
     public PlayerEntity() {
     }
@@ -55,6 +90,4 @@ public class PlayerEntity {
     public void setTeam(TeamEntity team) {
         this.team = team;
     }
-
-
 }
