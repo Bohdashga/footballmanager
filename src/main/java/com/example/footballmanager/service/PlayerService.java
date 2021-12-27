@@ -3,6 +3,7 @@ package com.example.footballmanager.service;
 import com.example.footballmanager.entity.PlayerEntity;
 import com.example.footballmanager.repository.PlayerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,14 +18,22 @@ public class PlayerService {
        return playerRepo.save(player);
     }
 
-    //not ready
-    public PlayerEntity updatePlayer (PlayerEntity player, Long id) throws Exception {
-        PlayerEntity existPlayer = playerRepo.findById(id).get();
 
+    public PlayerEntity updatePlayer (PlayerEntity player, Long id) throws Exception {
+
+        PlayerEntity existPlayer = playerRepo.findById(id).get();
         if(existPlayer == null){
             throw new Exception("Player not found");
         }
-        return player;
+        existPlayer.setFirstname(player.getFirstname());
+        existPlayer.setSurname(player.getSurname());
+        existPlayer.setAge(player.getAge());
+        existPlayer.setExperience(player.getExperience());
+        existPlayer.setPrice(player.getPrice());
+        existPlayer.setTeam(player.getTeam());
+
+
+        return playerRepo.save(existPlayer);
     }
 
     public void deletePlayer(Long id) throws Exception {

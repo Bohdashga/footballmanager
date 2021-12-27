@@ -27,7 +27,16 @@ public class TeamController {
         }
     }
 
-    @GetMapping("/")
+    @PutMapping
+    public ResponseEntity updateTeam(@RequestBody TeamEntity team,@RequestParam Long id) {
+        try {
+            return ResponseEntity.ok(teamService.updateTeam(team,id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Failed update");
+        }
+    }
+
+    @GetMapping
     public ResponseEntity getOneTeam(@RequestParam Long id) { // function check if server work
         try {
             return ResponseEntity.ok(teamService.getOne(id));
@@ -44,6 +53,15 @@ public class TeamController {
             return ResponseEntity.ok(teamService.delete(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Виникла помилка");
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity getAllTeam() {
+        try {
+            return ResponseEntity.ok(teamService.getAllTeam());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Failed");
         }
     }
 

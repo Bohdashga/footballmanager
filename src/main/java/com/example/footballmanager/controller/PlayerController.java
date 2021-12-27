@@ -1,6 +1,7 @@
 package com.example.footballmanager.controller;
 
 import com.example.footballmanager.entity.PlayerEntity;
+import com.example.footballmanager.repository.PlayerRepo;
 import com.example.footballmanager.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,16 +23,18 @@ public class PlayerController {
         }
     }
 
-    @PatchMapping
+
+
+    @PutMapping
     public ResponseEntity updatePlayer (@RequestBody PlayerEntity player, @RequestParam Long  id) {
         try {
-            return ResponseEntity.ok(player);
+            return ResponseEntity.ok(playerService.updatePlayer(player,id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Failed");
         }
     }
 
-    @GetMapping
+    @GetMapping("/")
     public  ResponseEntity getPlayerById(@RequestParam Long id) {
         try {
             return ResponseEntity.ok(playerService.getByID(id));
@@ -40,7 +43,7 @@ public class PlayerController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public  ResponseEntity deletePlayerById(@RequestParam Long id) {
         try {
             playerService.deletePlayer(id);

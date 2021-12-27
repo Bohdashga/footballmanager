@@ -4,8 +4,6 @@ package com.example.footballmanager.entity;
 import javax.persistence.*;
 
 @Entity
-
-
 public class PlayerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +15,10 @@ public class PlayerEntity {
     private int experience;
     private float price;
     private Boolean isSell;
+    private TeamEntity team;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
-    private TeamEntity team;
 
     public int getAge() {
         return age;
@@ -42,7 +40,7 @@ public class PlayerEntity {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

@@ -18,14 +18,6 @@ public class TeamEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "team")
     private List<PlayerEntity> players;
 
-    public List<PlayerEntity> getPlayers() {
-        return players;
-    }
-
-    public void setPlayer(PlayerEntity player){
-        players.add(player);
-    }
-
     public TeamEntity() {
     }
 
@@ -59,5 +51,29 @@ public class TeamEntity {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
+    }
+
+    public float getCommission() {
+        return commission;
+    }
+
+    public void setCommission(float commission) {
+        this.commission = commission;
+    }
+
+    public List<PlayerEntity> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<PlayerEntity> players) {
+        this.players = players;
     }
 }
