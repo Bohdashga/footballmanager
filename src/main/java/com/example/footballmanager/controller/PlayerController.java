@@ -34,8 +34,8 @@ public class PlayerController {
         }
     }
 
-    @GetMapping("/")
-    public  ResponseEntity getPlayerById(@RequestParam Long id) {
+    @GetMapping("/{id}")
+    public  ResponseEntity getPlayerById(@PathVariable("id") Long id) {
         try {
             return ResponseEntity.ok(playerService.getByID(id));
         } catch (Exception e) {
@@ -59,6 +59,33 @@ public class PlayerController {
             return ResponseEntity.ok(playerService.getAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Failed");
+        }
+    }
+
+    @PatchMapping("/{playerId}/team/{teamId}")
+    public ResponseEntity addPlayerToTeam(@PathVariable("teamId") Long teamId, @PathVariable("playerId") Long playerId){
+        try {
+            return ResponseEntity.ok(playerService.addPlayerToTeam(playerId, teamId));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}/from-team")
+    public ResponseEntity removePlayerFromTeam(@PathVariable("id") Long id){
+        try {
+            return ResponseEntity.ok(playerService.removePlayerFromTeam(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PatchMapping("/{id}/set-sell")
+    public ResponseEntity sellingPlayer(@PathVariable("id") Long id){
+        try {
+            return ResponseEntity.ok(playerService.sellPlayer(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 

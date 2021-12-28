@@ -1,7 +1,11 @@
 package com.example.footballmanager.entity;
 
 
+import com.sun.istack.NotNull;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class PlayerEntity {
@@ -9,16 +13,18 @@ public class PlayerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
+
     private String firstname;
     private String surname;
     private int age;
     private int experience;
     private float price;
     private Boolean isSell;
-    private TeamEntity team;
+    private Date startСareer;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
+    private TeamEntity team;
 
     public int getAge() {
         return age;
@@ -87,5 +93,13 @@ public class PlayerEntity {
 
     public void setTeam(TeamEntity team) {
         this.team = team;
+    }
+
+    public Date getStartСareer() {
+        return startСareer;
+    }
+
+    public void setStartСareer(Date startСareer) {
+        this.startСareer = startСareer;
     }
 }

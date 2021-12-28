@@ -73,7 +73,7 @@ public class TeamEntity {
         return players;
     }
 
-    public void setPlayers(List<PlayerEntity> players) {
+    public void setPlayers(List <PlayerEntity> players) {
         this.players = players;
     }
 }

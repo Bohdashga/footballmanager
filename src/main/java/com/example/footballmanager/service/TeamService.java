@@ -1,19 +1,20 @@
 package com.example.footballmanager.service;
 
+import com.example.footballmanager.entity.PlayerEntity;
 import com.example.footballmanager.entity.TeamEntity;
 import com.example.footballmanager.exception.TeamAlreadyExistException;
 import com.example.footballmanager.exception.TeamNotFoundException;
 import com.example.footballmanager.model.Team;
+import com.example.footballmanager.repository.PlayerRepo;
 import com.example.footballmanager.repository.TeamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TeamService {
-
     @Autowired
     private TeamRepo teamRepo;
 
@@ -43,12 +44,12 @@ public class TeamService {
 
     }
 
-    public Team getOne(Long id) throws TeamNotFoundException {
+    public TeamEntity getOne(Long id) throws TeamNotFoundException {
         TeamEntity team = teamRepo.findById(id).get();
         if( team == null) {
             throw new TeamNotFoundException("Команда не знайдена");
         }
-        return Team.toModel(team);
+        return team;
     }
 
 
@@ -56,5 +57,4 @@ public class TeamService {
         teamRepo.deleteById(id);
         return id;
     }
-
 }

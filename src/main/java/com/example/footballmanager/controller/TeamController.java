@@ -36,8 +36,8 @@ public class TeamController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity getOneTeam(@RequestParam Long id) { // function check if server work
+    @GetMapping("/{id}")
+    public ResponseEntity getOneTeam(@PathVariable("id") Long id) { // function check if server work
         try {
             return ResponseEntity.ok(teamService.getOne(id));
         } catch (TeamNotFoundException e) {
@@ -64,5 +64,4 @@ public class TeamController {
             return ResponseEntity.badRequest().body("Failed");
         }
     }
-
 }
